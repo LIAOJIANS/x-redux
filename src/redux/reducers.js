@@ -31,6 +31,7 @@ function addMsg(state = msgs, action) {
 }
 export default combineReducers({
 
+
     funCount,
     addMsg
 })
