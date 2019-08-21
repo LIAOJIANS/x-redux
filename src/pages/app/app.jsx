@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { add_count, add_msg, del_count, SanCount } from '../../redux/actions'
+import { addMsg, addCount, delCount } from '../../redux/actions'
 
 export default class App extends Component {
 
@@ -10,25 +10,28 @@ export default class App extends Component {
 
     addCount = () => {
         const values = this.value.value
-        this.props.store.dispatch(add_count(values))
+        this.props.store.dispatch(addCount(values))
     }
     delCount = () => {
         const values = this.value.value
-        this.props.store.dispatch(del_count(values))
+        this.props.store.dispatch(delCount(values))
     }
     sanCount = () => {
         const values = this.value.value
-        this.props.store.dispatch(del_count(values))
+        setTimeout(() => {
+            this.props.store.dispatch(addCount(values))
+        }, 3000)
     }
     ou = () => {
         const values = this.value.value
         if (values%2 === 0) {
-            this.props.store.dispatch(add_count(values))
+            this.props.store.dispatch(addCount(values))
         }
     }
     addMsg = () => {
         const msg = this.input.value
-        this.props.store.dispatch(SanCount(msg))
+        console.log(msg)
+        this.props.store.dispatch(addMsg(msg))
     }
    render() {
         const { count, msgs } = this.props.store.getState()
@@ -51,7 +54,7 @@ export default class App extends Component {
                <br/>
                <div>
                    <input type="text" placeholder='输入添加的消息' ref={ input => this.input = input }/>&nbsp;
-                   <button onChange={ this.addMsg }>添加消息</button>
+                   <button onClick={ this.addMsg }>添加消息</button>
                    <ul>
                        {
                            msgs.map( (msg, index) => (

@@ -7,31 +7,30 @@ import {
 } from './action-types'
 
 
-const count = 0
-function funCount(state =count, action) {
+const initCount = 0 // 初始数量
+function count(state = initCount, action) {
 
     switch (action.type) {
         case ADD_COUNT:
-            return state + action.data
+            return state + action.data * 1
         case DEL_COUNT:
-            return state - action.data
+            return state - action.data * 1
         default:
             return state
     }
 }
 
-const msgs = ['消息1', '消息2', '消息3']
-function addMsg(state = msgs, action) {
+const initMsgs = [] // 初始值
+function msgs(state = initMsgs, action) {
+
     switch (action.type) {
         case ADD_MSG:
-            return [ ...action.data, state ]
+            return [ action.data, ...state ]
         default:
             return state
     }
 }
 export default combineReducers({
-
-
-    funCount,
-    addMsg
+    count,
+    msgs
 })
