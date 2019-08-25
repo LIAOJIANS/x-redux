@@ -1,5 +1,7 @@
 
-import { combineReducers } from 'redux'
+// import { combineReducers } from 'redux'
+import { combineReducers } from '../lib/redux'
+
 import {
     ADD_COUNT,
     DEL_COUNT,
@@ -9,7 +11,7 @@ import {
 
 const initCount = 0 // 初始数量
 function count(state = initCount, action) {
-
+    console.log(action)
     switch (action.type) {
         case ADD_COUNT:
             return state + action.data * 1
